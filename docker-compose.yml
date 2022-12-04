@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  notetonru-api:
+    image: ${DOCKER_REGISTRY-}notetonruapi
+    container_name: notetonru-api
+    build:
+      context: .
+      dockerfile: NoteTonRu.Api.Api/Dockerfile
+    ports: ['5000:80']
+    depends_on:
+      notetonru-db:
+        condition: service_started
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "./.files:/files"
+
+
+  notetonru-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: notetonru-db
+    user: root
+    ports:
+      - 1434:1433
+    volumes:
+      - ./.sqlserver/mssql/data:/var/opt/mssql/data:rw
+      - ./.sqlserver/backup:/var/opt/mssql/backup/output:rw
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=b81230ef-2ae4-4da0-8442-d3e89463c2fc
+
+
