@@ -2,11 +2,11 @@ version: '3.4'
 
 services:
   notetonru-api:
-    image: ${DOCKER_REGISTRY-}notetonruapi
-    container_name: notetonru-api
+    image: ${DOCKER_REGISTRY-}ndiapi
+    container_name: ndi-api
     build:
       context: .
-      dockerfile: NoteTonRu.Api.Api/Dockerfile
+      dockerfile: NDI.Api.Api/Dockerfile
     ports: ['5000:80']
     depends_on:
       notetonru-db:
@@ -22,7 +22,7 @@ services:
 
   notetonru-db:
     image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: notetonru-db
+    container_name: ndi-db
     user: root
     ports:
       - 1434:1433

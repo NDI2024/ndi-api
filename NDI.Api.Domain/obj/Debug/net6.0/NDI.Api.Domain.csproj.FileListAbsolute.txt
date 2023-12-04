@@ -1,0 +1,12 @@
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\bin\Debug\net6.0\NDI.Api.Domain.deps.json
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\bin\Debug\net6.0\NDI.Api.Domain.dll
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\bin\Debug\net6.0\NDI.Api.Domain.pdb
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.csproj.AssemblyReference.cache
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.AssemblyInfoInputs.cache
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.AssemblyInfo.cs
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.csproj.CoreCompileInputs.cache
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.dll
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\refint\NDI.Api.Domain.dll
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\NDI.Api.Domain.pdb
+C:\Users\lucas\Documents\Cours\NDI\NDI-API\NDI.Api.Domain\obj\Debug\net6.0\ref\NDI.Api.Domain.dll
