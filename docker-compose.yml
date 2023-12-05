@@ -9,8 +9,7 @@ services:
       dockerfile: NDI.Api.Api/Dockerfile
     ports: ['5000:80']
     depends_on:
-      notetonru-db:
-        condition: service_started
+      - notetonru-db
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
