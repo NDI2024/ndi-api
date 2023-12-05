@@ -4,5 +4,10 @@ namespace NDI.Api.Domain.Repositories;
 
 public interface IUsersRepository
 {
-    Task CreateAsync(User entity, CancellationToken token = default);
+
+    Task  Create(User entity);
+ 
+    Task<User?> GetFullById(Guid id);
+   
+    Task<User?> GetByUsernameOrEmail(string? username, string? email);
 }

@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using NDI.Api.Domain.Entities;
+using NDI.Api.Domain.Repositories;
+using NDI.Api.Infrastructure.EfCore;
 using NDI.Api.Domain.Entities;
 using NDI.Api.Domain.Repositories;
 using NDI.Api.Infrastructure.EfCore;
 
-namespace NDI.Api.Infrastructure.Repositories;
+namespace NoteTonRu.Api.Infrastructure.Repositories;
 
 public class UsersRepository : IUsersRepository
 {
@@ -12,7 +16,7 @@ public class UsersRepository : IUsersRepository
         _context = context;
     }
     
-    public async Task CreateAsync(User entity, CancellationToken token = default)
+    public async Task  Create(User entity)
     {
         try
         {
@@ -23,5 +27,19 @@ public class UsersRepository : IUsersRepository
         {
             throw e;
         }
+    }
+
+    public async Task<User?> GetFullById(Guid id)
+    {
+        User? user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Id.Equals(id));
+
+        if (user != null) user.Password = "";
+        return user;
+    }
+
+    public async Task<User?> GetByUsernameOrEmail(string? username, string? email)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.Username.Equals(username) || u.Email.Equals(email));
     }
 }

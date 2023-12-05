@@ -1,6 +1,8 @@
 using FastEndpoints;
+using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
+using NDI.Api.Api.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NDI.Api.Infrastructure;
@@ -17,6 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructureImplementations(configuration, builder.Environment);
 builder.Services.AddHealthChecks();
+builder.Services.AddAuthenticationJWTBearer(configuration.GetSection("TokenStrings").GetSection("TokenSigningKey").Value);
+builder.Services.AddMemoryCache();
+
+builder.Services.Configure<TokenOptions>(configuration.GetSection("TokenStrings"));
 
 builder.Services.AddSwaggerDoc(
     config =>
