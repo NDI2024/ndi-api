@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  notetonru-api:
+  ndi-api:
     image: ${DOCKER_REGISTRY-}ndiapi
     container_name: ndi-api
     build:
@@ -17,7 +17,7 @@ services:
       - "./.files:/files"
 
 
-  notetonru-db:
+  ndi-db:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: ndi-db
     user: root
