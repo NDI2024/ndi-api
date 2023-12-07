@@ -5,6 +5,5 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>Docker</ActiveDebugProfile>
-    <dockerfilerunarguments>-e "enable_cors=true"</dockerfilerunarguments>
   </PropertyGroup>
 </Project>

@@ -33,6 +33,13 @@ builder.Services.AddSwaggerDoc(
     },
     shortSchemaNames: true);
 
+
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(z =>
+        z.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod()));
+
 WebApplication app = builder.Build();
 
 app.MapHealthChecks("/health-check");
@@ -48,7 +55,7 @@ if (app.Environment.IsDevelopment())
 
 
 
-app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors();
 app.UseAuthentication();
 
 app.UseHttpsRedirection();
