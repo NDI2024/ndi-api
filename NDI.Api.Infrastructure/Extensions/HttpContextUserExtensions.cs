@@ -17,7 +17,7 @@ public static class HttpContextUserExtensions
         string username = context.GetUserName();
         Guid id = Guid.Parse(context.GetUserId());
         string email = context.GetEmail();
-        string role = context.GetEmail();
+        string role = context.GetRole();
 
 
 
