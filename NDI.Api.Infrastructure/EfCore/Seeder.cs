@@ -76,8 +76,6 @@ public static class Seeder
         };
         
         modelBuilder.Entity<MemoryCard>().HasData(memoryCards);
-        
-        
         modelBuilder.Entity<Information>().HasData(informations);
         
     }

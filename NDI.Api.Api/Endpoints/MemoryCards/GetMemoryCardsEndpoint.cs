@@ -44,7 +44,7 @@ public class GetMemoryCardsEndpoint : Endpoint<GetMemoryCardsRequest,List<GetMem
               ImagePath = memorycard.ImagePath,
               ShortDescription = memorycard.Informations![randomInt].ShortDescription,
               Description = memorycard.Informations![randomInt].LongDescription,
-              Link = memorycard.Informations![randomInt].Link
+              Link = memorycard.Informations![randomInt].Link.ToList()
           });
        }
 
@@ -58,5 +58,5 @@ public class GetMemoryCardsModel
     public string? ImagePath { get; set; }
     public string? ShortDescription { get; set; }
     public string? Description { get; set; }
-    public string? Link { get; set; }
+    public List<string>? Link { get; set; }
 }

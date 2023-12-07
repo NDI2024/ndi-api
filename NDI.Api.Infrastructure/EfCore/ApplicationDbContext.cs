@@ -13,7 +13,6 @@ public class ApplicationDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-        //Add HasNoKey on Links inside information
         Seeder.SeedAsync(modelBuilder); 
         
     }
