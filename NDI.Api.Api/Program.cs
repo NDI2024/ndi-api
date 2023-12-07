@@ -59,7 +59,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCors(); // allow any origin
+app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseHttpsRedirection();
 
