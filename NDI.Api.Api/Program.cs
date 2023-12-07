@@ -64,10 +64,10 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapHub<GameHub>("/gamehub");
+// });
 
 await app.MigrateDbAsync();
 
