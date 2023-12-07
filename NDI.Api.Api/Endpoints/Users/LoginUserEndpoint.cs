@@ -1,9 +1,11 @@
-﻿﻿using FastEndpoints;
+﻿﻿using System.Security.Claims;
+ using FastEndpoints;
 using FastEndpoints.Security;
  using Microsoft.Extensions.Options;
 using NDI.Api.Api.Options;
 using NDI.Api.Domain.Entities;
-using NDI.Api.Domain.Repositories;
+ using NDI.Api.Domain.Enums;
+ using NDI.Api.Domain.Repositories;
 using NDI.Api.Domain.Services;
 
 namespace NDI.Api.Api.Endpoints.Users;
@@ -54,7 +56,7 @@ public class LoginUserEndpoint : Endpoint<LoginUserRequest, string>
         var jwtToken = JWTBearer.CreateToken(
             signingKey: _tokenOptions.TokenSigningKey,
             expireAt: DateTime.UtcNow.AddDays(1),
-            claims: new[] {("Username", user.Username), ("UserID", user.Id.ToString()), ("Email", user.Email)},
+            claims: new[] {(ClaimsCodes.Username, user.Username), (ClaimsCodes.Id, user.Id.ToString()), (ClaimsCodes.Email, user.Email)},
             roles: new[] {user.Role.ToString()});
 
         await SendAsync(jwtToken, cancellation: cancellationToken);

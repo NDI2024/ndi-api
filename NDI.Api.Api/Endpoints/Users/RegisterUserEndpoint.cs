@@ -34,7 +34,6 @@ public class RegisterUserEndpoint : Endpoint<RegisterUserRequest, bool>
         _usersRepository = usersRepository;
     }
     
-
     public override async Task HandleAsync(RegisterUserRequest request, CancellationToken cancellationToken)
     {
 

@@ -22,6 +22,17 @@ builder.Services.AddHealthChecks();
 builder.Services.AddAuthenticationJWTBearer(configuration.GetSection("TokenStrings").GetSection("TokenSigningKey").Value);
 builder.Services.AddMemoryCache();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 builder.Services.Configure<TokenOptions>(configuration.GetSection("TokenStrings"));
 
 builder.Services.AddSwaggerDoc(
@@ -47,9 +58,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUi3(s => s.ConfigureDefaults());
 }
 
-app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+app.UseCors(); // allow any origin
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
