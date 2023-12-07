@@ -34,17 +34,20 @@ builder.Services.AddSwaggerDoc(
     shortSchemaNames: true);
 
 
-builder.Services.AddCors(options =>
-    options.AddDefaultPolicy(z =>
-        z.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod()));
 
 WebApplication app = builder.Build();
 
 app.MapHealthChecks("/health-check");
+app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-app.UseFastEndpoints();
+app.UseFastEndpoints(c =>
+{
+    c.Endpoints.Configurator = ep =>
+    {
+        ep.AllowAnonymous();
+        ep.Options(b => b.RequireHost("*"));
+    };
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -52,15 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseOpenApi();
     app.UseSwaggerUi3(s => s.ConfigureDefaults());
 }
+app.UseHttpsRedirection();
 
 
-
-app.UseCors();
 app.UseAuthentication();
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
-
 
 app.MapControllers();
 
