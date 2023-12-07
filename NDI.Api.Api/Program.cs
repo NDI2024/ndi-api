@@ -24,12 +24,14 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        policy =>
+    options.AddPolicy("AllowAll",
+        z =>
         {
-            policy.AllowAnyOrigin()
+            z
+                .AllowAnyOrigin() 
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowCredentials();
         });
 });
 
@@ -59,7 +61,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
