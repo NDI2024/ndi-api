@@ -19,8 +19,6 @@ public static class HttpContextUserExtensions
         string email = context.GetEmail();
         string role = context.GetRole();
 
-
-
         return new CurrentUser(id, username, email, role switch
         {
             "Admin" => UserRoleEnum.Admin,

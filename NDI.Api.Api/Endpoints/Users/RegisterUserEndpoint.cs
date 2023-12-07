@@ -39,18 +39,18 @@ public class RegisterUserEndpoint : Endpoint<RegisterUserRequest, bool>
 
         if (string.IsNullOrWhiteSpace(request.Username))
         {
-            throw new Exception("Username is mandatory");
+            ThrowError("Username is mandatory");
         }
         
         if (request.Username.Length is < MinUsernameLength or > MaxUsernameLength 
             || !Regex.IsMatch(request.Username, UsernameRegex))
         {
-            throw new Exception("Invalid username");
+            ThrowError("Invalid username");
         }
         
         if (string.IsNullOrWhiteSpace(request.Email))
         {
-            throw new Exception("Email is mandatory");
+            ThrowError("Email is mandatory");
         }
         
         try
@@ -58,17 +58,17 @@ public class RegisterUserEndpoint : Endpoint<RegisterUserRequest, bool>
             MailAddress mailAddress = new(request.Email);
             if (mailAddress.Address != request.Email)
             {
-                throw new Exception("Invalid email");
+                ThrowError("Invalid email");
             }
         }
         catch (FormatException)
         {
-            throw new Exception("Invalid email");
+            ThrowError("Invalid email");
         }
         
         if (string.IsNullOrWhiteSpace(request.Password))
         {
-            throw new Exception("Password is mandatory");
+            ThrowError("Password is mandatory");
         }
         
         if (!PasswordLengthRegex.IsMatch(request.Password) 
@@ -77,13 +77,13 @@ public class RegisterUserEndpoint : Endpoint<RegisterUserRequest, bool>
             || !PasswordHasLowerCharRegex.IsMatch(request.Password) 
             || !PasswordHasSpecialCharRegex.IsMatch(request.Password))
         {
-            throw new Exception("Invalid password");
+            ThrowError("Invalid password");
         }
         
         User? existingUser = await _usersRepository.GetByUsernameOrEmail(request.Username, request.Email);
         if (existingUser != null)
         {
-            throw new Exception("User already exists");
+            ThrowError("User already exists");
         }
 
         var hashedPassword = HashService.Hash(request.Password);

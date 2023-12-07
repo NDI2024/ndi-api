@@ -33,25 +33,27 @@ public class LoginUserEndpoint : Endpoint<LoginUserRequest, string>
     {
         if (string.IsNullOrWhiteSpace(request.Username))
         {
-            throw new Exception("Username is mandatory");
+            AddError("Username is mandatory");
         }
         
         if (string.IsNullOrWhiteSpace(request.Password))
         {
-            throw new Exception("Password is mandatory");
+            AddError( "Password is mandatory");
         }
         
         User? user = await _usersRepository.GetByUsernameOrEmail(request.Username, request.Username);
         if (user == null)
         {
-            throw new Exception("User not found");
+            ThrowError("Invalid username");
         }
 
         var hashedPassword = HashService.Hash(request.Password);
         if (hashedPassword != user.Password)
         {
-            throw new Exception("Invalid password");
+            AddError("Invalid password");
         }
+        
+        ThrowIfAnyErrors();
         
         var jwtToken = JWTBearer.CreateToken(
             signingKey: _tokenOptions.TokenSigningKey,
