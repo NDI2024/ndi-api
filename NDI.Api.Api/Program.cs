@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
+using NDI.Api.Api.Hubs;
 using NDI.Api.Api.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -62,6 +63,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<GameHub>("/gamehub");
+});
 
 await app.MigrateDbAsync();
 
