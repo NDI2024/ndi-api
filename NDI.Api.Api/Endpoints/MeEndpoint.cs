@@ -24,7 +24,8 @@ public class MeEndpoint : EndpointWithoutRequest<GetMeResponse>
         {
             Username = user.Username,
             Email = user.Email,
-            Role = user.Role.ToString()
+            Role = user.Role.ToString(),
+            Id = user.Id
         };
 
         await SendAsync(response, cancellation: ct);
@@ -33,6 +34,7 @@ public class MeEndpoint : EndpointWithoutRequest<GetMeResponse>
 
 public class GetMeResponse
 {
+    public Guid Id { get; set; }
     public string Username { get; set; } = default!;
     public string Email { get; set; } = default!;
     public string Role { get; set; } = default!;
