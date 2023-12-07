@@ -1,8 +1,9 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+ENV enable_cors=true
+
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
-
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["NDI.Api.Api/NDI.Api.Api.csproj", "NDI.Api.Api/"]
