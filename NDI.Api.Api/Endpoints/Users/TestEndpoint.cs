@@ -1,4 +1,5 @@
 using FastEndpoints;
+using NDI.Api.Domain.Enums;
 
 namespace NDI.Api.Api.Endpoints.Users;
 
@@ -16,8 +17,8 @@ public class TestEndpoint : Endpoint<TestRequest,TestResponse>
     
     public override void Configure()
     {
+        Roles(UserRoleEnum.User.ToString());
         Post("/test");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(TestRequest req, CancellationToken ct)

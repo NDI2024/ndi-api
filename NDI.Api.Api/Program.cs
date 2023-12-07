@@ -49,7 +49,6 @@ app.UseAuthentication()
 {
     c.Endpoints.Configurator = ep =>
     {
-        ep.AllowAnonymous();
         ep.Options(b => b.RequireHost("*"));
     };
 });
