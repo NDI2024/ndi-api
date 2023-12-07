@@ -12,22 +12,27 @@ public static class Seeder
             new MemoryCard
             {
                 Title = "Le réchauffement climatique",
+                ImagePath = "https://cdn.discordapp.com/attachments/1171399362308472837/1182445891257372692/mem5.png?ex=6584b98d&is=6572448d&hm=78ba47f144d58e9499d1ed58cf2327c05dc998cfaf093c2cba57929d97197bee&"
             },
             new MemoryCard
             {
                 Title = "La pollution",
+                ImagePath = "https://cdn.discordapp.com/attachments/1171399362308472837/1182459799426830346/mem9.png?ex=6584c681&is=65725181&hm=47dc1148abd9866ed8bf6859aa8283eb3603ee7b4b01971748e6a36f46328a89&"
             },
             new MemoryCard
             {
                 Title = "La fonte des glaces",
+                ImagePath = "https://cdn.discordapp.com/attachments/1171399362308472837/1182443020088520806/mem2.png?ex=6584b6e0&is=657241e0&hm=9786abe775eb0c2f0b4f3eb672b21d9760f66d3b4e43c44f33a37288487417c0&"
             },
             new MemoryCard()
             {
                 Title = "Transports : transformer les mobilités individuelles",
+                ImagePath = "https://cdn.discordapp.com/attachments/1171399362308472837/1182443020386304000/mem3.png?ex=6584b6e0&is=657241e0&hm=baab7e037db4112ae37769ac230da07e9ba986f93fc1f0515b42d62a5407fddb&"
             },
             new MemoryCard()
             {
                 Title = "Agriculture et alimentation : moins de viande, plus de pratiques durables",
+                ImagePath = "https://media.discordapp.net/attachments/1171399362308472837/1182443020667334777/mem4.png?ex=6584b6e0&is=657241e0&hm=f874ff428faf0163e13e640a0d8b763592157bbda940be40291e40dd178aa0e5&=&format=webp&quality=lossless&width=480&height=480"
             }
         };
         
