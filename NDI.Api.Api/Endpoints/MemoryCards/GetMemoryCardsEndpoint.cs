@@ -40,6 +40,7 @@ public class GetMemoryCardsEndpoint : Endpoint<GetMemoryCardsRequest,List<GetMem
           var randomInt = new Random().Next(0, memorycard.Informations!.Count); 
           models.Add(new GetMemoryCardsModel()
           {
+              Id = memorycard.Id,
               Title = memorycard.Title,
               ImagePath = memorycard.ImagePath,
               ShortDescription = memorycard.Informations![randomInt].ShortDescription,
@@ -54,6 +55,7 @@ public class GetMemoryCardsEndpoint : Endpoint<GetMemoryCardsRequest,List<GetMem
 
 public class GetMemoryCardsModel
 {
+    public Guid Id { get; set; }
     public string? Title { get; set; }
     public string? ImagePath { get; set; }
     public string? ShortDescription { get; set; }

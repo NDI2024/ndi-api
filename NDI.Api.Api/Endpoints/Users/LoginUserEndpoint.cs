@@ -21,7 +21,7 @@ public class LoginUserEndpoint : Endpoint<LoginUserRequest, string>
         Post("/users/login");
     }
     
-    
+     
     public LoginUserEndpoint(IUsersRepository usersRepository, IOptions<TokenOptions> tokenOptions)
     {
         _usersRepository = usersRepository;
