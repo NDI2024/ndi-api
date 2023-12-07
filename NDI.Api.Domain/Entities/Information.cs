@@ -6,5 +6,5 @@ public class Information : Entity
 {
         public string? ShortDescription { get; set; }
         public string? LongDescription { get; set; }
-        public string? Link { get; set; }
+        public IEnumerable<string?> Link { get; set; }
 }
