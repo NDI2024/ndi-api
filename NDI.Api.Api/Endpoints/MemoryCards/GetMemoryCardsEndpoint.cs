@@ -49,10 +49,8 @@ public class GetMemoryCardsEndpoint : Endpoint<GetMemoryCardsRequest,List<GetMem
        }
 
        await SendAsync(models, cancellation: ct);
-
     }
 }
-
 
 public class GetMemoryCardsModel
 {

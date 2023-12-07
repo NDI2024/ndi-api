@@ -21,5 +21,6 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Information> Informations { get; set; }
     public DbSet<MemoryCard> MemoryCards { get; set; }
+    public DbSet<Score> Scores { get; set; }
     
 }
