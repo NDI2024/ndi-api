@@ -49,7 +49,6 @@ WebApplication app = builder.Build();
 
 app.MapHealthChecks("/health-check");
 
-app.UseAuthorization();
 app.UseFastEndpoints();
 
 // Configure the HTTP request pipeline.
@@ -60,13 +59,14 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAll");
 
 app.MapControllers();
 
