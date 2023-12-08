@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NDI.Api.Infrastructure;
 using NDI.Api.Infrastructure.Extensions;
+using NDI.Api.Infrastructure.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = CreateConfiguration();
@@ -27,6 +28,7 @@ builder.Services.AddHealthChecks();
 builder.Services.AddMemoryCache();
 
 builder.Services.Configure<TokenOptions>(configuration.GetSection("TokenStrings"));
+builder.Services.Configure<OpenAIOptions>(configuration.GetSection("OpenAIStrings"));
 
 builder.Services.AddSwaggerDoc(
     config =>
@@ -47,12 +49,8 @@ app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseRouting();
 
-
-
 app.UseAuthentication() 
     .UseAuthorization(); 
-
-
 
 app.UseFastEndpoints(c =>
 {
