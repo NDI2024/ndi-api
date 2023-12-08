@@ -34,7 +34,6 @@ public class UsersRepository : IUsersRepository
         User? user = await _context.Users
             .FirstOrDefaultAsync(u => u.Id.Equals(id));
 
-        if (user != null) user.Password = "";
         return user;
     }
 
