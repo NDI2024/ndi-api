@@ -37,6 +37,9 @@ builder.Services.AddSwaggerDoc(
     },
     shortSchemaNames: true);
 
+builder.Services.AddSignalR();
+
+
 WebApplication app = builder.Build();
 
 app.MapHealthChecks("/health-check");
@@ -49,6 +52,8 @@ app.UseRouting();
 app.UseAuthentication() 
     .UseAuthorization(); 
 
+
+
 app.UseFastEndpoints(c =>
 {
     c.Endpoints.Configurator = ep =>
@@ -57,6 +62,10 @@ app.UseFastEndpoints(c =>
     };
 });
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<GameHub>("/gamehub");
+});
 
 
 // Configure the HTTP request pipeline.
