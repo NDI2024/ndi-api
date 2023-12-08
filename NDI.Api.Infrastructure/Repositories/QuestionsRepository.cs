@@ -3,14 +3,18 @@ using NDI.Api.Domain.Entities;
 using NDI.Api.Domain.Repositories;
 using NDI.Api.Infrastructure.EfCore;
 
-namespace NoteTonRu.Api.Infrastructure.Repositories;
+namespace NDI.Api.Infrastructure.Repositories;
 
 public class QuestionsRepository : IQuestionsRepository
 {
     private readonly ApplicationDbContext _context;
-    
-    public async Task<IEnumerable<Question>> ListQuestionsAsync()
+    public QuestionsRepository(ApplicationDbContext context)
     {
-        return _context.Questions.Include(x => x.Reponses);
+        _context = context;
+    }
+    
+    public async Task<List<Question>> ListQuestionsAsync()
+    {
+        return await _context.Questions.Include(x => x.Reponses).ToListAsync();
     }
 }
