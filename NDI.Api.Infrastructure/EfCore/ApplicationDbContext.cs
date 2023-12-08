@@ -10,16 +10,15 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         Seeder.SeedAsync(modelBuilder); 
-        
+        base.OnModelCreating(modelBuilder);
     }
     
     
     public DbSet<User> Users { get; set; }
     public DbSet<Information> Informations { get; set; }
     public DbSet<MemoryCard> MemoryCards { get; set; }
+    public DbSet<Score> Scores { get; set; }
     
 }

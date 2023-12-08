@@ -37,6 +37,7 @@ builder.Services.AddSwaggerDoc(
     },
     shortSchemaNames: true);
 
+builder.Services.AddSignalR();
 
 
 WebApplication app = builder.Build();
@@ -44,15 +45,28 @@ WebApplication app = builder.Build();
 app.MapHealthChecks("/health-check");
 app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
+app.UseRouting();
+
+
+
 app.UseAuthentication() 
-    .UseAuthorization()
-    .UseFastEndpoints(c =>
+    .UseAuthorization(); 
+
+
+
+app.UseFastEndpoints(c =>
 {
     c.Endpoints.Configurator = ep =>
     {
         ep.Options(b => b.RequireHost("*"));
     };
 });
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<GameHub>("/gamehub");
+});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -63,11 +77,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
 
 await app.MigrateDbAsync();
 
