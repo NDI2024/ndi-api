@@ -4,11 +4,13 @@ using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
 using NDI.Api.Api.Hubs;
 using NDI.Api.Api.Options;
+using NDI.Api.Domain.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NDI.Api.Infrastructure;
 using NDI.Api.Infrastructure.Extensions;
 using NDI.Api.Infrastructure.Options;
+using NDI.Api.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = CreateConfiguration();
@@ -27,8 +29,10 @@ builder.Services.AddInfrastructureImplementations(configuration, builder.Environ
 builder.Services.AddHealthChecks();
 builder.Services.AddMemoryCache();
 
+
 builder.Services.Configure<TokenOptions>(configuration.GetSection("TokenStrings"));
 builder.Services.Configure<OpenAIOptions>(configuration.GetSection("OpenAIStrings"));
+
 
 builder.Services.AddSwaggerDoc(
     config =>
