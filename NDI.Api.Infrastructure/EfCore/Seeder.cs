@@ -77,6 +77,105 @@ public static class Seeder
         
         modelBuilder.Entity<MemoryCard>().HasData(memoryCards);
         modelBuilder.Entity<Information>().HasData(informations);
+
+        List<Question> questions = new List<Question>()
+        {
+            new Question
+            {
+                Text = "Quel est le secteur le plus émetteur de gaz à effet de serre en France ?",
+            },
+            new Question
+            {
+                Text = "Quel est le secteur le plus émetteur de gaz à effet de serre dans le monde ?",
+            },
+            new Question
+            {
+                Text = "Combien de tonnes de CO2 émet un vol Paris-New York par passager ?",
+            },
+            new Question
+            {
+                Text = "Combien de tonnes de CO2 un citoyen devrait emettre selon le GIEC ?",
+            }
+        };
+
+        List<Reponse> reponses = new List<Reponse>()
+        {
+            new Reponse
+            {
+                QuestionId = questions[0].Id,
+                Text = "Les transports",
+                IsCorrect = true
+            },
+            new Reponse
+            {
+                QuestionId = questions[0].Id,
+                Text = "L'agriculture",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[0].Id,
+                Text = "L'industrie",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[1].Id,
+                Text = "Les transports",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[1].Id,
+                Text = "L'agriculture",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[1].Id,
+                Text = "L'industrie",
+                IsCorrect = true
+            },
+            new Reponse
+            {
+                QuestionId = questions[2].Id,
+                Text = "1 tonne",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[2].Id,
+                Text = "2 tonnes",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[2].Id,
+                Text = "3 tonnes",
+                IsCorrect = true
+            },
+            new Reponse
+            {
+                QuestionId = questions[3].Id,
+                Text = "1 tonne",
+                IsCorrect = false
+            },
+            new Reponse
+            {
+                QuestionId = questions[3].Id,
+                Text = "2 tonnes",
+                IsCorrect = true
+            },
+            new Reponse
+            {
+                QuestionId = questions[3].Id,
+                Text = "3 tonnes",
+                IsCorrect = false
+            }
+        };
         
+        modelBuilder.Entity<Question>().HasData(questions);
+        modelBuilder.Entity<Reponse>().HasData(reponses);
+
     }
 }

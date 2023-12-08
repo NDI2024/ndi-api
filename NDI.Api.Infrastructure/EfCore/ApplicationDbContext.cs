@@ -20,5 +20,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Information> Informations { get; set; }
     public DbSet<MemoryCard> MemoryCards { get; set; }
     public DbSet<Score> Scores { get; set; }
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<Reponse> Reponses { get; set; }
     
 }

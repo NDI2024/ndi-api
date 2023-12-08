@@ -23,7 +23,7 @@ public class GetMemoryCardsEndpoint : Endpoint<GetMemoryCardsRequest,List<GetMem
     
     public override void Configure()
     {
-        Get("/memorycards/{pairNumber}");
+        Get("/memorycards/{PairNumber}");
         Roles(UserRoleEnum.User.ToString());
     }
 
