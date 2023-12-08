@@ -44,8 +44,6 @@ WebApplication app = builder.Build();
 app.MapHealthChecks("/health-check");
 app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
-app.UseRouting();
-
 app.UseAuthentication() 
     .UseAuthorization()
     .UseFastEndpoints(c =>
@@ -56,10 +54,10 @@ app.UseAuthentication()
     };
 });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapHub<GameHub>("/gamehub");
+//});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
