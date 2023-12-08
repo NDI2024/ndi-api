@@ -2,7 +2,6 @@
 using NDI.Api.Domain.Entities;
 using NDI.Api.Domain.Enums;
 using NDI.Api.Domain.Repositories;
-using NDI.Api.Domain.Services;
 
 namespace NDI.Api.Api.Endpoints.Users.Fast;
 
@@ -14,12 +13,10 @@ public class GetQuestionsRequest
 public class GetQuestionsEndpoint : Endpoint<GetQuestionsRequest,List<GetQuestionsResponse>>
 {
     private readonly IQuestionsRepository _questionsRepository;
-    private readonly IGPTService _gptService;
     
-    public GetQuestionsEndpoint(IQuestionsRepository questionsRepository, IGPTService gptService)
+    public GetQuestionsEndpoint(IQuestionsRepository questionsRepository)
     {
         _questionsRepository = questionsRepository;
-        _gptService = gptService;
     }
 
     public override void Configure()
@@ -42,20 +39,8 @@ public class GetQuestionsEndpoint : Endpoint<GetQuestionsRequest,List<GetQuestio
                 Id = r.Id,
                 ReponseLabel = r.Text,
                 IsCorrect = r.IsCorrect
-            }).Where(x => x.IsCorrect ?? false).ToList()
+            }).ToList()
         }).ToList();
-        
-        //Add false informations from chatgpt
-        foreach (var model in models)
-        {
-            var reponse = _gptService.Ask($"A l'aide de la question suivante : {model.QuestionLabel}, donne moi une mauvaise réponse (la bonne réponse est {model.Reponses?.FirstOrDefault()?.ReponseLabel})");
-            model.Reponses?.Add(new ReponseModel
-            {
-                Id = Guid.NewGuid(),
-                ReponseLabel = reponse,
-                IsCorrect = false
-            });
-        }
         
         await SendAsync(models, cancellation: ct);
     }
