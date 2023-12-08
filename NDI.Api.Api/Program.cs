@@ -37,9 +37,6 @@ builder.Services.AddSwaggerDoc(
     },
     shortSchemaNames: true);
 
-builder.Services.AddSignalR();
-
-
 WebApplication app = builder.Build();
 
 app.MapHealthChecks("/health-check");
@@ -51,11 +48,6 @@ app.UseRouting();
 
 app.UseAuthentication() 
     .UseAuthorization(); 
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
 
 app.UseFastEndpoints(c =>
 {
