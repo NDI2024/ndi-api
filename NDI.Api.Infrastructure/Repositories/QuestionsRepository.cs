@@ -11,6 +11,6 @@ public class QuestionsRepository : IQuestionsRepository
     
     public async Task<IEnumerable<Question>> ListQuestionsAsync()
     {
-        return _context.Questions.Include(x => x.Reponses).AsEnumerable();
+        return _context.Questions.Include(x => x.Reponses);
     }
 }
