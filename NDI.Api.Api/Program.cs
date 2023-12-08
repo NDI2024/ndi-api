@@ -54,10 +54,10 @@ app.UseAuthentication()
     };
 });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapHub<GameHub>("/gamehub");
+//});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
