@@ -22,8 +22,9 @@ public class GPTService : IGPTService
 
         CompletionsOptions completionsOptions = new()
         {
-            DeploymentName = "gpt-35-turbo-instruct",
+            DeploymentName = _openAIOptions.DeploymentName,
             Prompts = { prompt },
+            
         };
 
         Response<Completions> completionsResponse = client.GetCompletions(completionsOptions);
