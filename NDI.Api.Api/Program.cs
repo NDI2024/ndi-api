@@ -37,7 +37,7 @@ builder.Services.AddSwaggerDoc(
     },
     shortSchemaNames: true);
 
-builder.Services.AddSignalR();g
+builder.Services.AddSignalR();
 
 
 WebApplication app = builder.Build();
