@@ -54,6 +54,11 @@ app.UseAuthentication()
     };
 });
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<GameHub>("/gamehub");
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -63,11 +68,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
-// app.UseEndpoints(endpoints =>
-// {
-//     endpoints.MapHub<GameHub>("/gamehub");
-// });
 
 await app.MigrateDbAsync();
 
