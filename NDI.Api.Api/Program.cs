@@ -47,9 +47,17 @@ app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseRouting();
 
+
+
 app.UseAuthentication() 
-    .UseAuthorization()
-    .UseFastEndpoints(c =>
+    .UseAuthorization(); 
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<GameHub>("/gamehub");
+});
+
+app.UseFastEndpoints(c =>
 {
     c.Endpoints.Configurator = ep =>
     {
@@ -57,10 +65,7 @@ app.UseAuthentication()
     };
 });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<GameHub>("/gamehub");
-});
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
